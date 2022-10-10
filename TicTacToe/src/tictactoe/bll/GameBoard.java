@@ -6,6 +6,7 @@
 package tictactoe.bll;
 
 
+import java.util.Arrays;
 
 /**
  *
@@ -13,8 +14,24 @@ package tictactoe.bll;
  */
 public class GameBoard implements IGameModel
 {
+   private static final int Board_Size = 3;
+   private int[][] board;
     int currentPlayerId = 0;
-    public boolean isSpotTaken = false;
+
+    public GameBoard()
+    {
+        board = new int [Board_Size] [Board_Size];
+        resetBoard();
+    }
+
+    private void resetBoard()
+    {
+        for(int[] row : board){
+            Arrays.fill(row, -1);
+        }
+        currentPlayerId = 0;
+    }
+
     /**
      * Returns 0 for player 0, 1 for player 1.
      *
@@ -22,7 +39,7 @@ public class GameBoard implements IGameModel
      */
     public int getNextPlayer()
     {
-        //TODO Implement this method
+        nextPlayer();
         return currentPlayerId;
     }
 
@@ -31,31 +48,26 @@ public class GameBoard implements IGameModel
      * attempt is succesfull the current player has ended his turn and it is the
      * next players turn.
      *
-     * @param col column to place a marker in.
-     * @param row row to place a marker in.
+     * @param //col column to place a marker in.
+     * @param //row row to place a marker in.
      * @return true if the move is accepted, otherwise false. If gameOver == true
      * this method will always return false.
      */
+
+    public void nextPlayer(){
+        currentPlayerId = switch (currentPlayerId){
+            case 0 -> 1;
+            case 1 -> 0;
+            default -> -1;
+        };
+    }
     public boolean play(int col, int row)
     {
-        //TODO Implement this method
-        if (currentPlayerId == 0)
-        {
-            currentPlayerId = 1;
-        }
-        else
-        {
-            currentPlayerId = 0;
-        }
-        if (isSpotTaken = false)
-        {
-            isSpotTaken = true;
-            return true;
-        }
-        else
-        {
-            return false;
-        }
+       if(board[row][col] == -1){
+           board[row][col] = currentPlayerId;
+           return true;
+       }
+       return false;
     }
 
 
