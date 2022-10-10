@@ -6,6 +6,7 @@
 package tictactoe.bll;
 
 
+
 /**
  *
  * @author Stegger
@@ -13,7 +14,7 @@ package tictactoe.bll;
 public class GameBoard implements IGameModel
 {
     int currentPlayerId = 0;
-
+    public boolean isSpotTaken = false;
     /**
      * Returns 0 for player 0, 1 for player 1.
      *
@@ -46,8 +47,17 @@ public class GameBoard implements IGameModel
         {
             currentPlayerId = 0;
         }
-        return true;
+        if (isSpotTaken = false)
+        {
+            isSpotTaken = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
+
 
     public boolean isGameOver()
     {
