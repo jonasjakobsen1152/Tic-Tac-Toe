@@ -5,12 +5,14 @@
  */
 package tictactoe.bll;
 
+
 /**
  *
  * @author Stegger
  */
 public class GameBoard implements IGameModel
 {
+    int currentPlayerId = 0;
 
     /**
      * Returns 0 for player 0, 1 for player 1.
@@ -20,7 +22,7 @@ public class GameBoard implements IGameModel
     public int getNextPlayer()
     {
         //TODO Implement this method
-        return 0;
+        return currentPlayerId;
     }
 
     /**
@@ -36,6 +38,14 @@ public class GameBoard implements IGameModel
     public boolean play(int col, int row)
     {
         //TODO Implement this method
+        if (currentPlayerId == 0)
+        {
+            currentPlayerId = 1;
+        }
+        else
+        {
+            currentPlayerId = 0;
+        }
         return true;
     }
 
